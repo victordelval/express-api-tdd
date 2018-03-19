@@ -1,11 +1,23 @@
 import express from 'express'
 
+import config from './config'
+
+let _server
+
 const app = express()
 
-app.get('/', (req, res) => {
-    res.end('Hello world!!! :-P')
+config(app)
+
+app.get('/', (req, res, next) => {
+    res.end('Hello "configured" world!!!')
 })
 
-app.listen('9000', () => {
-    console.log('Server listening at http://localhost:9000')
+_server = app.listen('9000', () => {
+    const address = _server.address()
+    const host = address.address === '::'
+        ? 'localhost'
+        : address
+    const port = app.locals.config.PORT
+
+    console.log(`Server listening at http://${host}:${port}`)
 })
