@@ -112,4 +112,21 @@ describe('API', () => {
                 })
         })
     })
+
+    describe('/PUT /notes/:title/favorite', () => {
+        let expected = mocks.filter(item =>
+            item.title.toLowerCase() === 'Lorem ipsum'.toLowerCase()
+        )
+        if (expected.length) expected = expected[0]
+
+        it('it should PUT note filtered by title', () => {
+            request(instance)
+                .put('/notes/Lorem ipsum/favorite')
+                .expect('Content-Type', /json/)
+                .expect(200, expected)
+                .end((err, res) => {
+                    if (err) throw err
+                })
+        })
+    })
 })
