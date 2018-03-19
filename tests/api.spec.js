@@ -114,15 +114,16 @@ describe('API', () => {
         })
     })
 
-    describe('/PUT /notes/:title/favorite', () => {
-        let expected = mocks.filter(item =>
-            item.title.toLowerCase() === 'Lorem ipsum'.toLowerCase()
-        )
-        if (expected.length) expected = expected[0]
+    describe('/PUT /notes/:title/?favorite=true', () => {
+        let expected = {
+            title: 'Lorem ipsum',
+            body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            favorite: true
+        }
 
-        it('it should PUT note filtered by title', () => {
+        it('it should PUT favorite attribute of a note filtered by title', () => {
             request(instance)
-                .put('/notes/Lorem ipsum/favorite')
+                .put('/notes/Lorem ipsum/?favorite=true')
                 .expect('Content-Type', /json/)
                 .expect(200, expected)
                 .end((err, res) => {
