@@ -11,7 +11,16 @@ const server = {
         config(app)
 
         app.get('/', (req, res, next) => {
-            res.end('Hello "configured" world!!!')
+            res.end('Hello world!')
+        })
+
+        // Middleware to manage 404 error
+        app.use((req, res, next) => {
+            res.json({
+                error: 404,
+                message: '[404] There is no resource for the route consulted!'
+            })
+            next()
         })
 
         _server = app.listen('9000', () => {
