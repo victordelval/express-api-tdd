@@ -38,11 +38,14 @@ Development and production dependencies:
     "scripts": {
         "start": "node --require 'babel-register' src/index.js",
         "watch": "nodemon",
+        "test": "NODE_ENV=test mocha --compilers js:babel-register --timeout 10000 tests/"
     },
     "devDependencies": {
         "babel-preset-env": "^1.6.1",
         "babel-register": "^6.26.0",
-        "nodemon": "^1.17.2"
+        "mocha": "^5.0.4",
+        "nodemon": "^1.17.2",
+        "supertest": "^3.0.0"
     },
     "dependencies": {
         "body-parser": "^1.18.2",
@@ -62,8 +65,17 @@ express-api-tdd
     |- node_modules
         ...
     |- src
+        |- routes
+            base.js
+            notes.js
+        config.js
         index.js
+        mocks.js
+        router.js
+    |- tests
+        api.spec.js
     .babelrc
+    .env
     .gitignore
     nodemon.json
     package-lock.json
@@ -73,7 +85,10 @@ express-api-tdd
 
 
 ## Testing
-...
+
+**Mocha** is a feature-rich JavaScript test framework running on Node.js and in the browser, making asynchronous testing simple and fun. Mocha tests run serially, allowing for flexible and accurate reporting, while mapping uncaught exceptions to the correct test cases.
+
+**Supertest**. HTTP assertions made easy via superagent. The motivation with this module is to provide a high-level abstraction for testing HTTP, while still allowing you to drop down to the lower-level API provided by superagent.
 
 
 ## Available Scripts
