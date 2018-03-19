@@ -12,10 +12,20 @@ router
             .json(query)
     })
     .post('/', (req, res, next) => {
-        // TODO - Query DB manager to create a new note into DB
-        const query = req.body
-        res.status(201)
-            .json(query)
+        // Check title is unique
+        const filtered = mocks.filter(item =>
+            item.title.toLowerCase() === req.body.title.toLowerCase()
+        )
+        if (filtered.length) {
+            const errorData = { error: 400, message: 'There is already a note with that title' }
+            res.status(400)
+                .json(errorData)
+        } else {
+            // TODO - Query DB manager to create a new note into DB
+            const query = req.body
+            res.status(201)
+                .json(query)
+        }
     })
     .get('/:title', (req, res, next) => {
         // TODO - Query DB manager to read filtered data from DB
