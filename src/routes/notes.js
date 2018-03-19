@@ -6,14 +6,24 @@ const router = express.Router()
 
 router
     .get('/', (req, res, next) => {
-        // TODO - Read all notes from DB
+        // TODO - Query DB manager to read all notes from DB
+        const query = mocks
         res.status(200)
-            .json(mocks)
+            .json(query)
     })
     .post('/', (req, res, next) => {
-        // TODO - Create a new note and save into DB
+        // TODO - Query DB manager to create a new note into DB
+        const query = req.body
         res.status(201)
-            .json(req.body)
+            .json(query)
+    })
+    .get('/:title', (req, res, next) => {
+        // TODO - Query DB manager to read filtered data from DB
+        const query = mocks.filter(item =>
+            item.title.toLowerCase() === req.params.title.toLowerCase()
+        )
+        res.status(200)
+            .json(query)
     })
 
 export default router
