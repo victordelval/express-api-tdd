@@ -1,6 +1,7 @@
 import request from 'supertest'
 
 import server from '../src'
+import mocks from '../src/mocks'
 
 describe('API', () => {
 
@@ -49,7 +50,7 @@ describe('API', () => {
             request(instance)
                 .get('/notes')
                 .expect('Content-Type', /json/)
-                .expect(200)
+                .expect(200, mocks)
                 .end((err, res) => {
                     if (err) throw err
                 })
