@@ -13,16 +13,22 @@ Exercise to create a simple backend based on a REST API with Node.js and Express
 It is about covering the following specifications expressed as user stories:
 
 * As a USER I want to be able to call the API, that is, I want to be able to have a local server to make an HTTP call and to return something to me.
+    > GET /
 
 * As a USER I want to be able to call the API to create notes.
+    > POST /notes/
 
 * As a USER I want to be able to call the API to consult the notes.
+    > GET /notes/
 
 * As a USER I want to be able to call the API to see a single note.
+    > GET /notes/:title
 
 * As a USER I want to be able to call the API to bookmark a note.
+    > PUT /notes/:title/?favorite=true
 
 * As a USER I want to be able to call the API to check the notes marked as favorites.
+    > GET /notes/:title/?favorite=true
 
 
 ## Project Dependencies
