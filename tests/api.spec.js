@@ -114,6 +114,30 @@ describe('API', () => {
         })
     })
 
+    describe('/GET /notes/?favorite=true', () => {
+        let expected = [
+            {
+                title: 'Note about something',
+                body: 'Quisque pellentesque blandit viverra. Fusce sit amet vestibulum ipsum.',
+                favorite: true
+            },
+            {
+                title: 'Remember todo 2',
+                body: 'Nulla facilisis purus nibh, ac lobortis velit posuere eget.',
+                favorite: true
+            }
+        ]
+        it('it should GET all notes marked as favorite', () => {
+            request(instance)
+                .get('/notes/?favorite=true')
+                .expect('Content-Type', /json/)
+                .expect(200, expected)
+                .end((err, res) => {
+                    if (err) throw err
+                })
+        })
+    })
+
     describe('/PUT /notes/:title/?favorite=true', () => {
         let expected = {
             title: 'Lorem ipsum',
@@ -141,4 +165,5 @@ describe('API', () => {
                 })
         })
     })
+
 })
