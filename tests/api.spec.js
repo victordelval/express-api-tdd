@@ -46,7 +46,7 @@ describe('API', () => {
     // })
 
     describe('/GET /notes', () => {
-        it('it should GET all', () => {
+        it('it should GET all notes', () => {
             request(instance)
                 .get('/notes')
                 .expect('Content-Type', /json/)
@@ -58,7 +58,7 @@ describe('API', () => {
     })
 
     describe('/POST /notes', () => {
-        it('it should POST', () => {
+        it('it should POST a new note', () => {
             const body = {
                 title: 'Remember todo 3',
                 body: 'Ac lobortis velit posuere eget. Nulla facilisis purus nibh.',
@@ -69,6 +69,22 @@ describe('API', () => {
                 .post('/notes')
                 .send(body)
                 .expect(201, body)
+                .end((err, res) => {
+                    if (err) throw err
+                })
+        })
+    })
+
+    describe('/GET /notes/:title', () => {
+        const expected = mocks.filter(item =>
+            item.title.toLowerCase() === 'Lorem ipsum'.toLowerCase()
+        )
+
+        it('it should GET notes filtered by title', () => {
+            request(instance)
+                .get('/notes/Lorem ipsum')
+                .expect('Content-Type', /json/)
+                .expect(200, expected)
                 .end((err, res) => {
                     if (err) throw err
                 })
