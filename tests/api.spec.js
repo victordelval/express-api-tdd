@@ -56,4 +56,22 @@ describe('API', () => {
                 })
         })
     })
+
+    describe('/POST /notes', () => {
+        it('it should POST', () => {
+            const body = {
+                title: 'Remember todo 3',
+                body: 'Ac lobortis velit posuere eget. Nulla facilisis purus nibh.',
+                favorite: false
+            }
+
+            request(instance)
+                .post('/notes')
+                .send(body)
+                .expect(201, body)
+                .end((err, res) => {
+                    if (err) throw err
+                })
+        })
+    })
 })
