@@ -6,7 +6,11 @@ const router = express.Router()
 
 router
     .get('/', (req, res, next) => {
-        const query = mocks
+        let query
+        if (req.query.hasOwnProperty('favorite'))
+            query = mocks.filter(item => item.favorite)
+        else
+            query = mocks
         res.status(200)
             .json(query)
     })
