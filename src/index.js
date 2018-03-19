@@ -1,6 +1,7 @@
 import express from 'express'
 
 import config from './config'
+import router from './router'
 
 let _server
 
@@ -10,11 +11,9 @@ const server = {
         const app = express()
         config(app)
 
-        app.get('/', (req, res, next) => {
-            res.end('Hello world!')
-        })
+        router(app)
 
-        // Middleware to manage 404 error
+        // DISABLED - Middleware to manage 404 error
         // app.use((req, res, next) => {
         //     res.json({
         //         error: 404,
