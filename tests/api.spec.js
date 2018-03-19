@@ -75,6 +75,28 @@ describe('API', () => {
         })
     })
 
+    describe('/POST /notes', () => {
+        it('it should raise exception when POST a duplicated new note', () => {
+            const body = {
+                title: 'Lorem ipsum',
+                body: 'Ac lobortis velit posuere eget. Nulla facilisis purus nibh.',
+                favorite: false
+            }
+            const errorRes = {
+                error: 400,
+                message: "There is already a note with that title"
+            }
+
+            request(instance)
+                .post('/notes')
+                .send(body)
+                .expect(400, errorRes)
+                .end((err, res) => {
+                    if (err) throw err
+                })
+        })
+    })
+
     describe('/GET /notes/:title', () => {
         const expected = mocks.filter(item =>
             item.title.toLowerCase() === 'Lorem ipsum'.toLowerCase()
