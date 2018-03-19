@@ -8,7 +8,7 @@
 
 
 ## Short Description
-Exercise to create a simple backend based on a REST API with Node.js and Express.
+Exercise to create a simple backend based on a REST API with Node.js and Express, and applying TDD (test driven development).
 
 It is about covering the following specifications expressed as user stories:
 
@@ -58,7 +58,7 @@ Development and production dependencies:
 The project is organized presenting the following structure of folders and files:
 
 ```
-nodejs-api-mcfly
+express-api-tdd
     |- node_modules
         ...
     |- src
