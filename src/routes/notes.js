@@ -35,5 +35,23 @@ router
         res.status(200)
             .json(query)
     })
+    .put('/:title/favorite', (req, res, next) => {
+        // TODO - Query DB manager to read filtered data from DB
+        let filtered = mocks.filter(item =>
+            item.title.toLowerCase() === req.params.title.toLowerCase()
+        )
+        if (filtered.length) {
+            filtered = filtered[0]
+            // TODO - Query DB manager to update the note attribute
+            filtered.favorite = Boolean(req.body.favorite)
+            const query = filtered
+            res.status(200)
+                .json(query)
+        } else {
+            const errorData = { error: 400, message: 'A note with the title provided has not been found.' }
+            res.status(400)
+                .json(errorData)
+        }
+    })
 
 export default router
