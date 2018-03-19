@@ -44,4 +44,15 @@ describe('API', () => {
     //     })
     // })
 
+    describe('/GET /notes', () => {
+        it('it should GET all', () => {
+            request(instance)
+                .get('/notes')
+                .expect('Content-Type', /json/)
+                .expect(200)
+                .end((err, res) => {
+                    if (err) throw err
+                })
+        })
+    })
 })
