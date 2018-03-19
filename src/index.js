@@ -15,13 +15,13 @@ const server = {
         })
 
         // Middleware to manage 404 error
-        app.use((req, res, next) => {
-            res.json({
-                error: 404,
-                message: '[404] There is no resource for the route consulted!'
-            })
-            next()
-        })
+        // app.use((req, res, next) => {
+        //     res.json({
+        //         error: 404,
+        //         message: '[404] There is no resource for the route consulted!'
+        //     })
+        //     next()
+        // })
 
         _server = app.listen('9000', () => {
             const address = _server.address()
