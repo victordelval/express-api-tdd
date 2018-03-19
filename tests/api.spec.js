@@ -98,11 +98,12 @@ describe('API', () => {
     })
 
     describe('/GET /notes/:title', () => {
-        const expected = mocks.filter(item =>
+        let expected = mocks.filter(item =>
             item.title.toLowerCase() === 'Lorem ipsum'.toLowerCase()
         )
+        if (expected.length) expected = expected[0]
 
-        it('it should GET notes filtered by title', () => {
+        it('it should GET a note filtered by title', () => {
             request(instance)
                 .get('/notes/Lorem ipsum')
                 .expect('Content-Type', /json/)

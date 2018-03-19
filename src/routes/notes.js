@@ -29,9 +29,10 @@ router
     })
     .get('/:title', (req, res, next) => {
         // TODO - Query DB manager to read filtered data from DB
-        const query = mocks.filter(item =>
+        let query = mocks.filter(item =>
             item.title.toLowerCase() === req.params.title.toLowerCase()
         )
+        if (query.length) query = query[0]
         res.status(200)
             .json(query)
     })
