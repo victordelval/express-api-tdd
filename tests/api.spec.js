@@ -130,5 +130,15 @@ describe('API', () => {
                     if (err) throw err
                 })
         })
+
+        it('it should fail PUT', () => {
+            request(instance)
+                .put('/notes/Lorem ipsum')
+                .expect('Content-Type', /json/)
+                .expect(400)
+                .end((err, res) => {
+                    if (err) throw err
+                })
+        })
     })
 })
