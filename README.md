@@ -29,7 +29,22 @@ It is about covering the following specifications expressed as user stories:
 Development and production dependencies:
 
 ```
-    ...
+    "scripts": {
+        "start": "node --require 'babel-register' src/index.js",
+        "watch": "nodemon",
+    },
+    "devDependencies": {
+        "babel-preset-env": "^1.6.1",
+        "babel-register": "^6.26.0",
+        "nodemon": "^1.17.2"
+    },
+    "dependencies": {
+        "body-parser": "^1.18.2",
+        "cors": "^2.8.4",
+        "dotenv": "^5.0.1",
+        "express": "^4.16.3",
+        "morgan": "^1.9.0"
+    }
 ```
 
 
@@ -38,7 +53,16 @@ The project is organized presenting the following structure of folders and files
 
 ```
 nodejs-api-mcfly
-    ...
+    |- node_modules
+        ...
+    |- src
+        index.js
+    .babelrc
+    .gitignore
+    nodemon.json
+    package-lock.json
+    package.json
+    README.md
 ```
 
 
@@ -50,4 +74,10 @@ nodejs-api-mcfly
 
 In the project directory, you can run:
 
-...
+### `npm run start`
+
+Runs the app in the development mode. Open [http://localhost:9000](http://localhost:9000) to view it in the browser.
+
+### `npm run watch`
+
+Runs the app with nodemon. Nodemon is a utility that will monitor for any changes in your source and automatically restart your server. Perfect for development.
